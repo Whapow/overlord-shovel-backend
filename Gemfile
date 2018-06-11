@@ -14,6 +14,9 @@ gem 'puma', '~> 3.11'
 # Use responders for http requests
 gem 'responders', '~> 2.4.0'
 
+# Use Netflix serializers
+gem 'fast_jsonapi', '~> 1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
