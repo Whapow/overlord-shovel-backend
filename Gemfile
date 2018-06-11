@@ -11,6 +11,8 @@ gem 'webpacker', '~> 3.4'
 gem 'pg', '~> 1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+# Use responders for http requests
+gem 'responders', '~> 2.4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
