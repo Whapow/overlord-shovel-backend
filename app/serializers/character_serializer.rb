@@ -1,4 +1,4 @@
 class CharacterSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :player_id, :campaign_id, :name
+  attributes :id, :player_id, :campaign_id, :name
 end

@@ -1,4 +1,4 @@
 class JournalSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :campaign_id
+  attributes :id, :name, :campaign_id
 end
