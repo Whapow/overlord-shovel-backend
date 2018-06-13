@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   patch 'campaigns/:id', to: 'campaigns#update'
   delete 'campaigns/:id', to: 'campaigns#destroy'
 
+  # Items
+  get 'campaigns/:id/items', to: 'items#index'
+
 end
