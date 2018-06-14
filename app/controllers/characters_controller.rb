@@ -28,7 +28,7 @@ class CharactersController < ApplicationController
   end
 
   def destroy
-    if @character.destroy
+    if @character.discard
       render json: {status: 202, message: 'deleted'}
     else
       render json: @character.errors

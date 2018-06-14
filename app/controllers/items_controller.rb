@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
+    if @item.discard
       render json: {status: 202, message:'deleted'}
     else
       render json: @item.errors

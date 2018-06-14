@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.update_attribute(:deleted, true)
+    if @user.discard
       render json: {status: 202, message: 'deleted'}
     else
       render json: @user.errors

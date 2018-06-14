@@ -24,7 +24,7 @@ class JournalsController < ApplicationController
   end
 
   def destroy 
-    if @journal.destroy
+    if @journal.discard
       render json: {status: 202, message: 'deleted'}
     else
       render json: @journal.errors
