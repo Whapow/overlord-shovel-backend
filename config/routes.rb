@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   patch 'journals/:id', to: 'journals#update'
   delete 'journals/:id', to: 'journals#destroy'
 
+  # Session
+  post 'login', to: "sessions#create"
+  delete 'logout', to: "sessions#destroy"
+
   # Users
   get 'users', to: 'users#index'
   post 'users', to: 'users#create'
