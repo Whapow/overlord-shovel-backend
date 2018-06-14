@@ -52,6 +52,8 @@ GEM
     byebug (10.0.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    discard (1.0.0)
+      activerecord (>= 4.2, < 6)
     erubi (1.7.1)
     fast_jsonapi (1.2)
       activesupport (>= 4.2)
@@ -145,6 +147,7 @@ DEPENDENCIES
   annotate
   bootsnap (>= 1.1.0)
   byebug
+  discard (~> 1.0)
   fast_jsonapi (~> 1.2)
   listen (>= 3.0.5, < 3.2)
   pg (~> 1.0)

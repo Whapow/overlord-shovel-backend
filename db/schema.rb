@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_022631) do
+ActiveRecord::Schema.define(version: 2018_06_14_182543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_022631) do
     t.integer "gm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_campaigns_on_discarded_at"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_022631) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_characters_on_discarded_at"
   end
 
   create_table "entries", id: false, force: :cascade do |t|
@@ -35,6 +39,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_022631) do
     t.bigint "character_id", null: false
     t.integer "experience"
     t.decimal "reward"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_entries_on_discarded_at"
   end
 
   create_table "items", force: :cascade do |t|
@@ -45,6 +51,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_022631) do
     t.decimal "value", precision: 9, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_items_on_discarded_at"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -52,6 +60,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_022631) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_journals_on_discarded_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,7 +69,8 @@ ActiveRecord::Schema.define(version: 2018_06_14_022631) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "deleted"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_users_on_discarded_at"
   end
 
 end
