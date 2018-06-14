@@ -10,6 +10,7 @@
 #  value        :decimal(9, 2)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  discarded_at :datetime
 #
 
 class Item < ApplicationRecord
