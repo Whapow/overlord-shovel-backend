@@ -37,8 +37,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def serialize(object)
-    render json: ItemSerializer.new(object)
+  def serialize(target)
+    render json: ItemSerializer.new(target)
   end
 
   def item_params

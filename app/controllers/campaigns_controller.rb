@@ -16,8 +16,8 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
   end
 
-  def serialize(object)
-    render json: CampaignSerializer.new(object)
+  def serialize(target)
+    render json: CampaignSerializer.new(target)
   end
 
 end
