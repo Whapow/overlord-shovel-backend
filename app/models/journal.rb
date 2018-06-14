@@ -11,4 +11,9 @@
 #
 
 class Journal < ApplicationRecord
+  belongs_to :campaign
+  has_many :characters, through: :entries
+
+  validates :campaign_id, presence: true
+  validates :name, presence: true
 end

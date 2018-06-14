@@ -11,4 +11,12 @@
 #
 
 class Campaign < ApplicationRecord
+  belongs_to :user, foreign_key: :gm_id
+  has_many :characters
+  has_many :items
+  has_many :journals
+
+  validates :gm_id, presence: true
+  validates :name, presence: true
+
 end

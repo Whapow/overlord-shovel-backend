@@ -12,4 +12,14 @@
 #
 
 class Character < ApplicationRecord
+  belongs_to :campaign
+  belongs_to :user, foreign_key: :player_id
+  has_many :items
+  has_many :journals, through: :entries
+
+  validates :campaign_id, presence: true
+  validates :player_id, presence: true
+  validates :name, presence: true
+
+
 end

@@ -11,5 +11,9 @@
 #
 
 class User < ApplicationRecord
+  has_many :characters
+  has_many :campaigns
 
+  validates :name, presence: true
+  validates :email, presence: true
 end
