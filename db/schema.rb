@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_14_182543) do
+ActiveRecord::Schema.define(version: 2018_06_15_002612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 2018_06_14_182543) do
     t.index ["discarded_at"], name: "index_characters_on_discarded_at"
   end
 
-  create_table "entries", id: false, force: :cascade do |t|
-    t.bigint "journal_id", null: false
-    t.bigint "character_id", null: false
+  create_table "entries", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "journal_id"
+    t.decimal "reward", precision: 9, scale: 2
     t.integer "experience"
-    t.decimal "reward"
-    t.datetime "discarded_at"
-    t.index ["discarded_at"], name: "index_entries_on_discarded_at"
+    t.index ["character_id"], name: "index_entries_on_character_id"
+    t.index ["journal_id"], name: "index_entries_on_journal_id"
   end
 
   create_table "items", force: :cascade do |t|
