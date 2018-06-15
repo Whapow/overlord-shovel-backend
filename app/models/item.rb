@@ -15,11 +15,9 @@
 
 class Item < ApplicationRecord
   belongs_to :campaign
-  belongs_to :player
+  belongs_to :character, optional: true
 
   validates :campaign_id, presence: true
-  validates :player_id, presence: true
   validates :name, presence: true
   validates :value, presence: true
-  
 end
