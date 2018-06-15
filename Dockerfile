@@ -1,15 +1,15 @@
 FROM ruby:2.5.1
 
 ARG UID
-# RUN adduser rails --uid $UID --disabled-password --gecos ""
+RUN adduser rails --uid $UID --disabled-password --gecos ""
 
 ENV APP /usr/src/app
 RUN mkdir $APP
 WORKDIR $APP
 
 COPY Gemfile* $APP/
-RUN bundle install -j3 --path vendor/bundle
+RUN bundle install
 
 COPY . $APP/
 
-CMD ["rails", "server", "-p", "8080", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-p", "3001", "-b", "0.0.0.0"]
