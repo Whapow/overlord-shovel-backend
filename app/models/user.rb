@@ -8,6 +8,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  discarded_at :datetime
+#  display_name :string
 #
 
 class User < ApplicationRecord
@@ -15,5 +16,6 @@ class User < ApplicationRecord
   has_many :campaigns
 
   validates :name, presence: true
+  validates :display_name, presence: true
   validates :email, presence: true
 end

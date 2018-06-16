@@ -8,9 +8,10 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  discarded_at :datetime
+#  display_name :string
 #
 
 class UserSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :name, :email
+  attributes :id, :display_name, :name, :email
 end
