@@ -1,7 +1,7 @@
 FROM ruby:2.5.1
 
 ARG UID
-RUN adduser rails --uid $UID --disabled-password --gecos ""
+RUN useradd -ms /bin/bash --uid $UID --non-unique backend
 
 ENV APP /usr/src/app
 RUN mkdir $APP
