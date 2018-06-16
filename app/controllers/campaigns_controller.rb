@@ -15,7 +15,7 @@ class CampaignsController < ApplicationController
     if @campaign.save
       serialize(@campaign)
     else
-      render json: @campaign.errors
+      render status: 400, json: @campaign.errors
     end
   end
 
@@ -23,7 +23,7 @@ class CampaignsController < ApplicationController
     if @campaign.update_attributes(campaign_params)
       serialize(@campaign)
     else
-      render json: @campaign.errors
+      render status: 400, json: @campaign.errors
     end
   end
 
@@ -31,7 +31,7 @@ class CampaignsController < ApplicationController
     if @campaign.discard
       render status: 202, message: 'deleted'
     else
-      render json: @campaign.errors
+      render status: 400, json: @campaign.errors
     end
   end
 

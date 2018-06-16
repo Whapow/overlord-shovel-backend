@@ -11,7 +11,7 @@ class JournalsController < ApplicationController
     if @journal.save
       serialize(@journal)
     else
-      render json: @journal.errors
+      render status: 400, json: @journal.errors
     end
   end
 
@@ -19,7 +19,7 @@ class JournalsController < ApplicationController
     if @journal.update_attributes(journal_params)
       serialize(@journal)
     else
-      render json: @journal.errors
+      render status: 400, json: @journal.errors
     end
   end
 
@@ -27,7 +27,7 @@ class JournalsController < ApplicationController
     if @journal.discard
       render status: 202, message: 'deleted'
     else
-      render json: @journal.errors
+      render status: 400, json: @journal.errors
     end
   end
 

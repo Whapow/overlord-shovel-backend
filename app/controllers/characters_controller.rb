@@ -15,7 +15,7 @@ class CharactersController < ApplicationController
     if @character.save
       serialize(@character)
     else
-      render json: @character.errors
+      render status: 400, json: @character.errors
     end
   end
 
@@ -23,7 +23,7 @@ class CharactersController < ApplicationController
     if @character.update_attributes(character_params)
       serialize(@character)
     else
-      render json: @character.errors
+      render status: 400, json: @character.errors
     end
   end
 
@@ -31,7 +31,7 @@ class CharactersController < ApplicationController
     if @character.discard
       render status: 202, message: 'deleted'
     else
-      render json: @character.errors
+      render status: 400, json: @character.errors
     end
   end
 

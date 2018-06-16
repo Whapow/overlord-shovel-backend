@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry, except: [:index, :create]
 
   def index
-    @entries = Entry.kept.where(journal_id: params[:id])
+    @entries = Entry.where(journal_id: params[:id])
     serialize(@entries)
   end
 
@@ -11,7 +11,7 @@ class EntriesController < ApplicationController
     if @entry.save
       serialize(@entry)
     else
-      render json: @entry.errors
+      render status: 400, json: @entry.errors
     end
   end
 
@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
     if @entry.update_attributes(entry_params)
       serialize(@entry)
     else
-      render json: @entry.errors
+      render status: 400, json: @entry.errors
     end
   end
 
@@ -27,7 +27,7 @@ class EntriesController < ApplicationController
     if @entry.discard
       render json: { status: 202, message: 'deleted' }
     else
-      render json: @entry.errors
+      render status: 400, json: @entry.errors
     end
   end
 

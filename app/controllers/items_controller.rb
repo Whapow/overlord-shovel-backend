@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     if @item.save
       serialize(@item)
     else
-      render json: @item.errors
+      render status: 400, json: @item.errors
     end
   end
 
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
     if @item.update_attributes(item_params)
       serialize(@item)
     else
-      render json: @item.errors
+      render status: 400, json: @item.errors
     end
   end
 
@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
     if @item.discard
       render json: {status: 202, message:'deleted'}
     else
-      render json: @item.errors
+      render status: 400, json: @item.errors
     end
   end
 

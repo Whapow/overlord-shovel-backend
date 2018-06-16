@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       serialize(@user)
     else
-      render json: @user.errors
+      render status: 400, json: @user.errors
     end
   end
 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       serialize(@user)
     else
-      render json: @user.errors
+      render status: 400, json: @user.errors
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.discard
       render status: 202, message: 'deleted'
     else
-      render json: @user.errors
+      render status: 400, json: @user.errors
     end
   end
 
