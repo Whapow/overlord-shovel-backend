@@ -3,9 +3,9 @@ class CharactersController < ApplicationController
 
   def index
     if params[:id]
-      @characters = Character.where(campaign_id: params[:id])
+      @characters = Character.kept.where(campaign_id: params[:id])
     else
-      @characters = Character.all
+      @characters = Character.kept
     end
     serialize(@characters)
   end

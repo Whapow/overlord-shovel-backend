@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry, except: [:index, :create]
 
   def index
-    @entries = Entry.where(journal_id: params[:id])
+    @entries = Entry.kept.where(journal_id: params[:id])
     serialize(@entries)
   end
 

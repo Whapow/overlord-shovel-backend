@@ -2,7 +2,7 @@ class JournalsController < ApplicationController
   before_action :set_journal, except: [:index, :create]
 
   def index
-    @journals = Journal.where(campaign_id: params[:id])
+    @journals = Journal.kept.where(campaign_id: params[:id])
     serialize(@journals)
   end
 
