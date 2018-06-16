@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.discard
-      render json: {status: 202, message: 'deleted'}
+      render status: 202, message: 'deleted'
     else
       render json: @user.errors
     end

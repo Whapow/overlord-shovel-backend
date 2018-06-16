@@ -29,7 +29,7 @@ class CampaignsController < ApplicationController
 
   def destroy
     if @campaign.discard
-      render json: {status: 202, message: 'deleted'}
+      render status: 202, message: 'deleted'
     else
       render json: @campaign.errors
     end
