@@ -2,8 +2,10 @@ class CharactersController < ApplicationController
   before_action :set_character, except: [:index, :create]
 
   def index
-    if params[:id]
-      @characters = Character.kept.where(campaign_id: params[:id])
+    if params[:campaign_id]
+      @characters = Character.kept.where(campaign_id: params[:campaign_id])
+    elsif params[:user_id]
+      @characters = Character.kept.where(user_id: params[:user_id]) 
     else
       @characters = Character.kept
     end

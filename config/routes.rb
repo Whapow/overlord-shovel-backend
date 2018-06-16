@@ -9,20 +9,21 @@ Rails.application.routes.draw do
   delete 'campaigns/:id', to: 'campaigns#destroy'
 
   # Characters
-  get 'campaigns/:id/characters', to: 'characters#index'
+  get 'campaigns/:campaign_id/characters', to: 'characters#index'
+  get 'users/:user_id/characters', to: 'characters#index'
   get 'characters', to: 'characters#index'
   post 'characters', to: 'characters#create'
   patch 'characters/:id', to: 'characters#update'
   delete 'characters/:id', to: 'characters#destroy'
   
   # Items
-  get 'campaigns/:id/items', to: 'items#index'
+  get 'campaigns/:campaign_id/items', to: 'items#index'
   post 'items', to: 'items#create'
   patch 'items/:id', to: 'items#update'
   delete 'items/:id', to: 'items#destroy'
 
   # Journals
-  get 'campaigns/:id/journals', to: 'journals#index'
+  get 'campaigns/:campaign_id/journals', to: 'journals#index'
   post 'journals', to: 'journals#create'
   patch 'journals/:id', to: 'journals#update'
   delete 'journals/:id', to: 'journals#destroy'
