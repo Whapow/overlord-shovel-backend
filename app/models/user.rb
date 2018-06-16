@@ -16,6 +16,6 @@ class User < ApplicationRecord
   has_many :campaigns
 
   validates :name, presence: true
-  validates :display_name, presence: true
-  validates :email, presence: true
+  validates :display_name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end
