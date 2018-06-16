@@ -2,11 +2,11 @@
 #
 # Table name: entries
 #
-#  journal_id   :bigint(8)        not null
-#  character_id :bigint(8)        not null
+#  id           :bigint(8)        not null, primary key
+#  character_id :bigint(8)
+#  journal_id   :bigint(8)
+#  reward       :decimal(9, 2)
 #  experience   :integer
-#  reward       :decimal(, )
-#  discarded_at :datetime
 #
 
 class Entry < ApplicationRecord
