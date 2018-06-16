@@ -1,22 +1,22 @@
 class SessionsController < ApplicationController
 
   def create
-    user = User.find_by(email: params[:session][:email])
+    user = User.find_by(display_name: session_params[:display_name])
     if user
       render json: UserSerializer.new(user)
     else
-      render json: {status: 400, message: 'could not login'}
+      render status: :bad_request, message: 'Unable to login'
     end
   end
 
   def destroy
-    render json: {status: 200}
+    render status: 200
   end
 
   private
 
   def session_params
-    params.require(:session).permit(:email)
+    params.require(:session).permit(:display_name)
   end
 
 end
