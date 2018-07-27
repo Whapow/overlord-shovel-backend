@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
   before_action :set_character, except: [:index, :create]
+  before_action :build_inventory, only: [:create]
 
   def index
     if params[:campaign_id]
