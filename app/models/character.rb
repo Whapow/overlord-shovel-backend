@@ -12,7 +12,7 @@
 #
 
 class Character < ApplicationRecord
-  belongs_to :campaign
+  belongs_to :campaign, optional: true
   belongs_to :user, foreign_key: :player_id
   has_many :items
   has_many :journals, through: :entries
