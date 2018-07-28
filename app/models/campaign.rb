@@ -15,6 +15,7 @@ class Campaign < ApplicationRecord
   has_many :characters
   has_many :items
   has_many :inventories, as: :owner
+  has_many :character_inventories, through: :characters, source: :inventory
   has_many :journals
 
   validates :gm_id, presence: true

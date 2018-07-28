@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
-      serialize(@campaign)
+      serialize @campaign
     else
       render status: 400, json: @campaign.errors
     end
@@ -21,7 +21,7 @@ class CampaignsController < ApplicationController
 
   def update
     if @campaign.update_attributes(campaign_params)
-      serialize(@campaign)
+      serialize @campaign
     else
       render status: 400, json: @campaign.errors
     end
@@ -33,6 +33,11 @@ class CampaignsController < ApplicationController
     else
       render status: 400, json: @campaign.errors
     end
+  end
+
+  def all_inventories
+    inventories = @campaign.inventories + @campaign.character_inventories
+    render json: InventorySerializer.new(inventories)
   end
 
   private
