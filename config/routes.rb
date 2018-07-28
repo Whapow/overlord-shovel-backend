@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   # Items
   get 'campaigns/:campaign_id/items', to: 'items#index'
+  get 'items', to: 'items#index'
   post 'items', to: 'items#create'
   put 'items/:id', to: 'items#update'
   delete 'items/:id', to: 'items#destroy'

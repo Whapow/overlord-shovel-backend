@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :create]
   
   def index
-    @items = Item.kept.where(campaign_id: params[:campaign_id])
+    @items = params[:campaign_id].present? ? Item.kept.where(campaign_id: params[:campaign_id]) : Item.kept
     serialize(@items)
   end
 
