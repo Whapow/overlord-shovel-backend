@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'campaigns/:id', to: 'campaigns#show'
   put 'campaigns/:id', to: 'campaigns#update'
   delete 'campaigns/:id', to: 'campaigns#destroy'
+  get 'campaigns/:id/inventories', to: 'campaigns#inventories'
 
   # Characters
   get 'campaigns/:campaign_id/characters', to: 'characters#index'
