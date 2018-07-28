@@ -35,8 +35,8 @@ class CampaignsController < ApplicationController
     end
   end
 
-  def all_inventories
-    inventories = @campaign.inventories + @campaign.character_inventories
+  def inventories
+    inventories = @campaign.inventories.includes(:item_slots) + @campaign.character_inventories.includes(:item_slots)
     render json: InventorySerializer.new(inventories)
   end
 

@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class IventorySerializer
+class InventorySerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :owner_id, :owner_type, :name
   has_many :item_slots
