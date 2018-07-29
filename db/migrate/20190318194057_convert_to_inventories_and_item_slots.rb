@@ -4,6 +4,7 @@ class ConvertToInventoriesAndItemSlots < ActiveRecord::Migration[5.2]
       t.string :name
       t.references :owner, polymorphic: true, index: true
       
+      t.datetime :discarded_at, index: true
       t.timestamps
     end
 
@@ -12,6 +13,7 @@ class ConvertToInventoriesAndItemSlots < ActiveRecord::Migration[5.2]
       t.string :inventory_id
       t.integer :quantity
 
+      t.datetime :discarded_at, index: true
       t.timestamps
     end
     
