@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   put 'characters/:id', to: 'characters#update'
   delete 'characters/:id', to: 'characters#destroy'
   
+  # Inventories
+  get 'campaigns/:campaign_id/inventories', to: 'inventories#index'
+  get 'inventories', to: 'inventories#index'
+  post 'inventories', to: 'inventories#create'
+  patch 'inventories/:id', to: 'inventories#update'
+  delete 'inventories/:id', to: 'inventories#destroy'
+  
   # Items
   get 'campaigns/:campaign_id/items', to: 'items#index'
   get 'items', to: 'items#index'
