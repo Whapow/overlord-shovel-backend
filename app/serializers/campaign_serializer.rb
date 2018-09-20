@@ -13,4 +13,6 @@
 class CampaignSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :name, :gm_id
+  has_many :characters
+  has_many :inventories
 end
