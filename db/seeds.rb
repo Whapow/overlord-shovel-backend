@@ -23,8 +23,8 @@ items = [
   { id: 11, name: 'Boring Thing', description: 'It Serves A Purpose', value: 10 },
   { id: 12, name: 'Broken Thing', description: 'May Be Worth Repairing', value: 1 },
   { id: 13, name: 'Random Thing', description: 'Probably Junk', value: 0 },
-  { id: 14, name: 'Noteworthy Thing', description: 'I Could Talk About This For Hours', value: 1500 },
-  { id: 15, name: 'Insignificant Thing', description: 'Not Much Can Be Said About This', value: 25 },
+  { id: 14, name: 'Neat Thing', description: 'I Could Talk About This For Hours', value: 1500 },
+  { id: 15, name: 'Bland Thing', description: 'Not Much Can Be Said About This', value: 25 },
 ]
 items.each{|item| Item.create!(item)}
 
@@ -36,7 +36,7 @@ campaigns = [
 ]
 campaigns.each{|campaign| 
   camp = Campaign.create!(campaign)
-  inv = Inventory.create!(owner: camp, name: "#{campaign[:name]}'s Inventory'")
+  inv = Inventory.create!(owner: camp, name: "#{campaign[:name]}'s Inventory")
   ItemSlot.create(inventory: inv, item_id: 9, quantity: 1)
   (10..15).each do |i|
     ItemSlot.create(inventory: inv, item_id: i, quantity: rand(9)+1)
@@ -50,7 +50,7 @@ characters = [
 ]
 characters.each{|character| 
   char = Character.create!(character)
-  inv = Inventory.create!(owner: char, name: "#{character[:name]}'s Inventory'")
+  inv = Inventory.create!(owner: char, name: "#{character[:name]}'s Inventory")
   ItemSlot.create(inventory: inv, item_id: char.id, quantity: 1)
   ItemSlot.create(inventory: inv, item_id: 4, quantity: 1)
   ItemSlot.create(inventory: inv, item_id: 5, quantity: 2)
