@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   delete 'inventories/:id', to: 'inventories#destroy'
   
   # Items
-  get 'campaigns/:campaign_id/items', to: 'items#index'
   get 'items', to: 'items#index'
   post 'items', to: 'items#create'
   put 'items/:id', to: 'items#update'
