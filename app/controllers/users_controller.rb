@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :validate_token, only: :create
   before_action :set_user, except: [:index, :create]
 
   def index
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :display_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end
 
 end

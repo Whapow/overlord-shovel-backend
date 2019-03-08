@@ -2,10 +2,10 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 users = [
-  { id: 1, name: 'Joshua', email: 'Joshua@overlord-shovel.com' },
-  { id: 2, name: 'Jessica', email: 'Jessica@overlord-shovel.com' },
-  { id: 3, name: 'Evan', email: 'Evan@overlord-shovel.com' },
-  { id: 4, name: 'Weston', email: 'Weston@overlord-shovel.com' }
+  { id: 1, username: 'Joshua', password: "Joshua123", email: 'Joshua@overlord-shovel.com' },
+  { id: 2, username: 'Jessica', password: "Jessica123", email: 'Jessica@overlord-shovel.com' },
+  { id: 3, username: 'Evan', password: "Evan123", email: 'Evan@overlord-shovel.com' },
+  { id: 4, username: 'Weston', password: "Weston123", email: 'Weston@overlord-shovel.com' }
 ]
 users.each{|user| User.create!(user)}
 

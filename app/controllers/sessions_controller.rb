@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
+  skip_before_action :validate_token, only: :create
 
   def create
-    user = User.find_by(display_name: session_params[:display_name])
-    if user
-      render json: UserSerializer.new(user)
+    @user = User.find_by_username(session_params[:username])
+    if @user && @user.authenticate(session_params[:password])
+      @session = @user.session || Session.create!(user: @user)
+      render json: SessionSerializer.new(@session)
     else
       render status: :bad_request, message: 'Unable to login'
     end
@@ -16,7 +18,7 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:display_name)
+    params.require(:session).permit(:username, :password)
   end
 
 end
