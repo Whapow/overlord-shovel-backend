@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_username(session_params[:username])
     if @user && @user.authenticate(session_params[:password])
-      @session = @user.session || Session.create!(user: @user)
+      @user.session.try(:destroy)
+      @session = Session.create!(user: @user)
       render json: SessionSerializer.new(@session)
     else
       render status: :bad_request, message: 'Unable to login'
