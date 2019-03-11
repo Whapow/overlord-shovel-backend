@@ -10,9 +10,8 @@ class ApplicationController < ActionController::API
   def validate_token
     error_message = {errors: "Please log in."}
     authenticate_with_http_token do |token, options|
-      # accepts 'Authorization: Token $token' header
-      @api_token = Session.find_by_token(token)
+      @session = Session.find_by_token(token)
     end
-    return render json: error_message, status: :unauthorized unless @api_token
+    return render json: error_message, status: :unauthorized unless @session
   end
 end

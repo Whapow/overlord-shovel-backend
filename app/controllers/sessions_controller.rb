@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_action :validate_token, only: :create
 
+  def show
+    render json: SessionSerializer.new(@session)
+  end
+
   def create
     @user = User.find_by_username(session_params[:username])
     if @user && @user.authenticate(session_params[:password])
