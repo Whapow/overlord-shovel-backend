@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, except: [:index, :create]
+  skip_before_action :validate_token, only: :create
+  before_action :set_user, except: [:index, :create, :profile]
 
   def index
     @users = User.kept
@@ -8,6 +9,10 @@ class UsersController < ApplicationController
 
   def show
     serialize(@user)
+  end
+
+  def profile
+    serialize(@session.user)
   end
 
   def create
@@ -20,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    render status: 401 unless params[:user][:password].blank? || @user.authenticate(params[:user][:old_password])
     if @user.update_attributes(user_params)
       serialize(@user)
     else
@@ -46,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :display_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end
 
 end

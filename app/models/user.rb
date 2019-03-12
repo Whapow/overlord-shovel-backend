@@ -12,10 +12,11 @@
 #
 
 class User < ApplicationRecord
+  has_secure_password
+  has_one :session
   has_many :characters
   has_many :campaigns
 
-  validates :name, presence: true
-  validates :display_name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
+  validates_presence_of :email, :username, :password_digest
+  validates_uniqueness_of :username, :email
 end

@@ -35,10 +35,12 @@ Rails.application.routes.draw do
   delete 'entries/:id', to: 'entries#destroy'
 
   # Session
+  get 'session', to: "sessions#show"
   post 'login', to: "sessions#create"
   delete 'logout', to: "sessions#destroy"
 
   # Users
+  get 'profile', to: 'users#profile'
   get 'users', to: 'users#index'
   post 'users', to: 'users#create'
   get 'users/:id', to: 'users#show'
