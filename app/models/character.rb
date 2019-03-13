@@ -17,9 +17,6 @@ class Character < ApplicationRecord
   has_many :items
   has_many :journals, through: :entries
 
-  validates :campaign_id, presence: true
   validates :player_id, presence: true
   validates :name, presence: true
-
-
 end
