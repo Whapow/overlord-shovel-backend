@@ -6,10 +6,5 @@ class AddPasswordToUser < ActiveRecord::Migration[5.2]
       u.string :last_name
       u.string :password_digest
     end
-
-    User.all.each do |user|
-      temporary_password = user.username + "123"
-      user.update(password: temporary_password)
-    end
   end
 end
