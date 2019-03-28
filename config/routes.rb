@@ -43,9 +43,10 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#profile'
   get 'users', to: 'users#index'
   post 'users', to: 'users#create'
+  post 'users/forgot_password', to: 'users#forgot_password'
   get 'users/:id', to: 'users#show'
   put 'users/:id', to: 'users#update'
   delete 'users/:id', to: 'users#destroy'
-
+  patch 'users/:id/reset_password', to: 'users#reset_password'
 
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :validate_token, only: :create
-  before_action :set_user, except: [:index, :create, :profile]
+  skip_before_action :validate_token, only: [:create, :forgot_password, :reset_password]
+  before_action :set_user, only: [:show, :update, :destroy, :reset_password]
 
   def index
     @users = User.kept
@@ -25,7 +25,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    render status: 401 unless params[:user][:password].blank? || @user.authenticate(params[:user][:old_password])
+    render status: 401 unless params[:user][:password].blank? || 
+                              @user.authenticate(params[:user][:old_password])                     
     if @user.update_attributes(user_params)
       serialize(@user)
     else
@@ -39,6 +40,28 @@ class UsersController < ApplicationController
     else
       render status: 400, json: @user.errors
     end
+  end
+
+  def forgot_password
+    u = User.arel_table
+    @user = User.where(u[:email].matches(params[:email])).first || 
+            User.where(u[:username].matches(params[:username])).first
+    if @user
+      @user.update(reset_token: SecureRandom.urlsafe_base64(nil, false))
+      UserMailer.password_reset(@user).deliver
+      render status: 200, json: @user
+    else
+      render status: 400, json: {error: "Could not find a user with that email/username"}
+    end  
+  end
+
+  def reset_password
+    if @user.reset_token == params[:reset_token]
+      @user.update(password: params[:password], reset_token: nil)
+      render status: 200
+    else
+      render status: 400, json: {error: "Invalid reset token"}
+    end  
   end
 
   private
