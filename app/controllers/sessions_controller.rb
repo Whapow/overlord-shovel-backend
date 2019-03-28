@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_username(session_params[:username])
+    @user = User.where(User.arel_table[:username].matches(session_params[:username])).first 
     if @user && @user.authenticate(session_params[:password])
       @user.session.try(:destroy)
       @session = Session.create!(user: @user)

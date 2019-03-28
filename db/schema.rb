@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_223637) do
+ActiveRecord::Schema.define(version: 2019_03_18_194057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,27 @@ ActiveRecord::Schema.define(version: 2019_03_08_223637) do
     t.integer "experience"
     t.index ["character_id"], name: "index_entries_on_character_id"
     t.index ["journal_id"], name: "index_entries_on_journal_id"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "name"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_inventories_on_discarded_at"
+    t.index ["owner_type", "owner_id"], name: "index_inventories_on_owner_type_and_owner_id"
+  end
+
+  create_table "item_slots", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "inventory_id"
+    t.integer "quantity"
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_item_slots_on_discarded_at"
   end
 
   create_table "items", force: :cascade do |t|
@@ -81,6 +102,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_223637) do
     t.string "username"
     t.string "last_name"
     t.string "password_digest"
+    t.string "reset_token"
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
   end
 
