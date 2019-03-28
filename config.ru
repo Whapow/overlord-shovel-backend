@@ -8,7 +8,7 @@ run Rails.application
 use Rack::Cors do
   
   allow do
-    origins ENV['CORS_ORIGIN']
+    origins ENV['FRONTEND_URL']
     resource '*', 
         :headers => :any, 
         :methods => [:get, :post, :delete, :put, :options]
