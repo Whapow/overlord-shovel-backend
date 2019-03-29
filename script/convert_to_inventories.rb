@@ -1,26 +1,44 @@
-Character.all.each do |character|
-  character.build_inventory.save
-end
-Campaign.all.each do |campaign|
-  campaign.inventories.build.save
-end
-
-Item.all.group_by(&:character_id).each do |character_id, items|
-  character = Character.find(character_id) if character_id
-  campaign = Campaign.find(items.first.campaign_id)
-
-  destination_inventory = (character.present? ? character.inventory : campaign.inventories.first)
-
-  core_items = {}
+core_items = {}
+def convert_items_into_inventory(items, inventory, core_items)
   items.each do |item|
-    item_slots = destination_inventory.item_slots
-    core_items[item.name] ||= item
-    existing_item_in_slot = item_slots.map{|item_slot| item_slot.item if item_slot.item && item_slot.item.name == item.name}.compact.first
-    if existing_item_in_slot
-      item_slots.find_by(item: existing_item_in_slot).increment!(:quantity)
+    item_slots = inventory.item_slots
+    results = determine_item_and_quantity(core_items, item)
+    core_items = results[:core_items]
+    target_item = results[:item]
+
+    existing_slot = item_slots.find_by(item: target_item)
+    if existing_slot
+      existing_slot.update(quantity: existing_slot.quantity + results[:quantity])
     else
-      destination_inventory.item_slots.create(item: core_items[item.name], quantity: 1)
+      inventory.item_slots.create(item: target_item, quantity: results[:quantity])
     end
-    item.discard unless item == core_items[item.name]
+    item.discard unless item == target_item
   end
+  core_items
+end
+
+def determine_item_and_quantity(core_items, item)
+  quantity_regex = /x([0-9]*)|([0-9]*)x|\(([0-9]*)\)/
+  quantity = (quantity_regex.match(item.name).to_a.compact.last || 1).to_i
+  trimmed_name = item.name.gsub(quantity_regex,'').gsub(/^\s*|\s*$/, '').downcase
+  item.update(name: trimmed_name.titleize)
+  target_item = (core_items[trimmed_name] ||= item)
+  if core_items[trimmed_name].value == 0 && item.value != 0
+    core_items[trimmed_name].update(value: (quantity > 1 ? (item.value / quantity) : item.value)) 
+  end
+  toReturn = {
+    item: target_item, 
+    core_items: core_items, 
+    quantity: quantity
+  }
+end
+
+Character.all.each do |character|
+  character.build_inventory.save unless character.inventory
+  core_items = convert_items_into_inventory(character.items, character.inventory, core_items)
+end
+
+Campaign.all.each do |campaign|
+  campaign.inventories.build.save unless campaign.inventories
+  core_items = convert_items_into_inventory(campaign.items.where(character_id: nil), campaign.inventories.first, core_items)
 end
