@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = User.where(u[:email].matches(params[:email])).first || 
             User.where(u[:username].matches(params[:username])).first
     if @user
-      @user.update(reset_token: SecureRandom.urlsafe_base64(nil, false))
+      @user.update!(reset_token: SecureRandom.urlsafe_base64(nil, false))
       UserMailer.password_reset(@user).deliver
       render status: 200, json: @user
     else
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
   def reset_password
     if @user.reset_token == params[:reset_token]
-      @user.update(password: params[:password], reset_token: nil)
+      @user.update!(password: params[:password], reset_token: nil)
       render status: 200
     else
       render status: 400, json: {error: "Invalid reset token"}
