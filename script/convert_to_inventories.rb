@@ -39,6 +39,6 @@ Character.all.each do |character|
 end
 
 Campaign.all.each do |campaign|
-  campaign.inventories.build.save unless campaign.inventories
+  campaign.inventories.build.save unless campaign.inventories.size > 0
   core_items = convert_items_into_inventory(campaign.items.where(character_id: nil), campaign.inventories.first, core_items)
 end
