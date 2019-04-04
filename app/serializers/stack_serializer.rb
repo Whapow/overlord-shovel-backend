@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: item_slots
+# Table name: stacks
 #
 #  id           :bigint(8)        not null, primary key
 #  item_id      :integer
@@ -10,7 +10,8 @@
 #  updated_at   :datetime         not null
 #
 
-class ItemSlot < ApplicationRecord
-  belongs_to :inventory
+class StackSerializer
+  include FastJsonapi::ObjectSerializer
+  attributes :id, :inventory_id, :item_id, :quantity
   belongs_to :item
 end

@@ -37,9 +37,9 @@ campaigns = [
 campaigns.each{|campaign| 
   camp = Campaign.create!(campaign)
   inv = Inventory.create!(owner: camp, name: "#{campaign[:name]}'s Inventory")
-  ItemSlot.create(inventory: inv, item_id: 9, quantity: 1)
+  Stack.create(inventory: inv, item_id: 9, quantity: 1)
   (10..15).each do |i|
-    ItemSlot.create(inventory: inv, item_id: i, quantity: rand(9)+1)
+    Stack.create(inventory: inv, item_id: i, quantity: rand(9)+1)
   end
 }
 
@@ -51,11 +51,11 @@ characters = [
 characters.each{|character| 
   char = Character.create!(character)
   inv = Inventory.create!(owner: char, name: "#{character[:name]}'s Inventory")
-  ItemSlot.create(inventory: inv, item_id: char.id, quantity: 1)
-  ItemSlot.create(inventory: inv, item_id: 4, quantity: 1)
-  ItemSlot.create(inventory: inv, item_id: 5, quantity: 2)
-  ItemSlot.create(inventory: inv, item_id: 6, quantity: 10)
-  ItemSlot.create(inventory: inv, item_id: 7, quantity: 5)
+  Stack.create(inventory: inv, item_id: char.id, quantity: 1)
+  Stack.create(inventory: inv, item_id: 4, quantity: 1)
+  Stack.create(inventory: inv, item_id: 5, quantity: 2)
+  Stack.create(inventory: inv, item_id: 6, quantity: 10)
+  Stack.create(inventory: inv, item_id: 7, quantity: 5)
 }
 
 journals = [

@@ -30,11 +30,11 @@ Rails.application.routes.draw do
   put 'items/:id', to: 'items#update'
   delete 'items/:id', to: 'items#destroy'
 
-  # Item Slots
-  get 'item_slots', to: 'item_slots#index'
-  post 'item_slots', to: 'item_slots#create'
-  patch 'item_slots/:id', to: 'item_slots#update'
-  delete 'item_slots/:id', to: 'item_slots#destroy'
+  # Stacks
+  get 'stacks', to: 'stacks#index'
+  post 'stacks', to: 'stacks#create'
+  patch 'stacks/:id', to: 'stacks#update'
+  delete 'stacks/:id', to: 'stacks#destroy'
 
   # Journals
   get 'campaigns/:campaign_id/journals', to: 'journals#index'

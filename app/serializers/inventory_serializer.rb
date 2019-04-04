@@ -13,5 +13,5 @@
 class InventorySerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :owner_id, :owner_type, :name
-  has_many :item_slots
+  has_many :stacks
 end

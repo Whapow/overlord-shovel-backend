@@ -1,16 +1,16 @@
 core_items = {}
 def convert_items_into_inventory(items, inventory, core_items)
   items.each do |item|
-    item_slots = inventory.item_slots
+    stacks = inventory.stacks
     results = determine_item_and_quantity(core_items, item)
     core_items = results[:core_items]
     target_item = results[:item]
 
-    existing_slot = item_slots.find_by(item: target_item)
-    if existing_slot
-      existing_slot.update(quantity: existing_slot.quantity + results[:quantity])
+    existing_stack = stacks.find_by(item: target_item)
+    if existing_stack
+      existing_stack.update(quantity: existing_stack.quantity + results[:quantity])
     else
-      inventory.item_slots.create(item: target_item, quantity: results[:quantity])
+      inventory.stacks.create(item: target_item, quantity: results[:quantity])
     end
     item.discard unless item == target_item
   end

@@ -14,7 +14,7 @@ class Inventory < ApplicationRecord
   before_save :set_default_name
 
   belongs_to :owner, polymorphic: true
-  has_many :item_slots
+  has_many :stacks
 
   validates :owner_id, presence: true
   validates :owner_type, presence: true
