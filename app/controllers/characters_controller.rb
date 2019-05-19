@@ -1,6 +1,5 @@
 class CharactersController < ApplicationController
   before_action :set_character, except: [:index, :create]
-  before_action :build_inventory, only: [:create]
 
   def index
     if params[:campaign_id]
@@ -15,6 +14,7 @@ class CharactersController < ApplicationController
 
   def create
     @character = Character.new(character_params)
+    @character.inventory = Inventory.new()
     if @character.save
       serialize(@character)
     else

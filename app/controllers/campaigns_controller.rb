@@ -13,6 +13,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
+      @campaign.inventories.create()
       serialize @campaign
     else
       render status: 400, json: @campaign.errors
