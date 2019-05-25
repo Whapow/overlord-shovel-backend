@@ -18,7 +18,7 @@ def convert_items_into_inventory(items, inventory, core_items)
 end
 
 def determine_item_and_quantity(core_items, item)
-  quantity_regex = /x([0-9]*)|([0-9]*)x|\(([0-9]*)\)/
+  quantity_regex = /x([0-9]+)|([0-9]+)x|\(([0-9]+)\)/
   quantity = (quantity_regex.match(item.name).to_a.compact.last || 1).to_i
   trimmed_name = item.name.gsub(quantity_regex,'').gsub(/^\s*|\s*$/, '').downcase
   item.update(name: trimmed_name.titleize)
