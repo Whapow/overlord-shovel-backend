@@ -24,7 +24,7 @@ class EntriesController < ApplicationController
   end
 
   def destroy
-    if @entry.discard
+    if @entry.destroy
       render json: { status: 202, message: 'deleted' }
     else
       render status: 400, json: @entry.errors
