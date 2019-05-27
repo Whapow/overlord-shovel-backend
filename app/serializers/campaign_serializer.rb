@@ -15,4 +15,6 @@ class CampaignSerializer
   attributes :id, :name, :gm_id
   has_many :characters
   has_many :inventories
+  has_many :character_inventories
+  has_many :journals
 end
