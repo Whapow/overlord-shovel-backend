@@ -17,4 +17,5 @@ class CampaignSerializer
   has_many :inventories
   has_many :character_inventories
   has_many :journals
+  has_many :pages, class_name: 'Wiki::Pages'
 end

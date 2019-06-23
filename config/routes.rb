@@ -64,4 +64,13 @@ Rails.application.routes.draw do
   delete 'users/:id', to: 'users#destroy'
   patch 'users/:id/reset_password', to: 'users#reset_password'
 
+  # Wiki
+    scope 'wiki' do
+      # Pages
+      get 'campaigns/:campaign_id', to: "pages#index"
+      get 'pages/:id', to: "pages#show"
+      get 'pages/:page_id/secrets', to: "secrets#index"
+      # Secrets
+    end
+
 end
