@@ -9,11 +9,15 @@ Things you may want to cover:
 
 * System dependencies
 
-* Configuration
+# Configuration
+ 
+ Create `config/local_env.yml` with the following values:
+  - FRONTEND_URL: http://localhost:3000/ 
 
 * Database creation
 
-* Database initialization
+# Database initialization
+
 
 * How to run the test suite
 

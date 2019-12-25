@@ -1,0 +1,19 @@
+version: '3.0'
+services:
+  db: 
+    image: postgres:latest
+    ports: 
+      - '5432:5432'
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      args:
+        UID: ${UID:-1000}
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '3001:3001' 
+    links:
+      - db  
+    # user: 'rails'

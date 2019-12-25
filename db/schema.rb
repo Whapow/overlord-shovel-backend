@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_194057) do
+ActiveRecord::Schema.define(version: 2019_04_04_190949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,16 +54,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_194057) do
     t.index ["owner_type", "owner_id"], name: "index_inventories_on_owner_type_and_owner_id"
   end
 
-  create_table "item_slots", force: :cascade do |t|
-    t.integer "item_id"
-    t.string "inventory_id"
-    t.integer "quantity"
-    t.datetime "discarded_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["discarded_at"], name: "index_item_slots_on_discarded_at"
-  end
-
   create_table "items", force: :cascade do |t|
     t.integer "campaign_id"
     t.integer "character_id"
@@ -91,6 +81,16 @@ ActiveRecord::Schema.define(version: 2019_03_18_194057) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "stacks", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "inventory_id"
+    t.integer "quantity"
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_stacks_on_discarded_at"
   end
 
   create_table "users", force: :cascade do |t|
