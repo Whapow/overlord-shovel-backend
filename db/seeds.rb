@@ -2,10 +2,10 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 users = [
-  { id: 1, username: 'Joshua', first_name: 'Joshua', password: "Joshua123", email: 'Joshua@overlord-shovel.com' },
-  { id: 2, username: 'Jessica', first_name: 'Jessica', password: "Jessica123", email: 'Jessica@overlord-shovel.com' },
-  { id: 3, username: 'Evan', first_name: 'Evan', password: "Evan123", email: 'Evan@overlord-shovel.com' },
-  { id: 4, username: 'Weston', first_name: 'Weston', password: "Weston123", email: 'Weston@overlord-shovel.com' }
+  { id: 1, username: 'Whapow', first_name: 'Joshua', password: "Joshua123", email: 'Joshua@overlordshovel.com' },
+  { id: 2, username: 'Sydriel', first_name: 'Sydney', password: "Audrael<3", email: 'maelsyd@overlordshovel.com' },
+  { id: 3, username: 'Kadus', first_name: 'Kadus', password: "2knowALLis2ctrl-A", email: 'maelel@overlordshovel.com' },
+  { id: 4, username: 'Cix', first_name: 'Kolrekii', password: "kolrekash-cix6", email: 'maelkol@overlordshovel.com' },
 ]
 users.each{|user| User.create!(user)}
 
@@ -30,9 +30,9 @@ items.each{|item| Item.create!(item)}
 
 campaigns = [
   { id: 1, gm_id: 1, name: 'Cy\'s Saga' },
-  { id: 2, gm_id: 1, name: 'As The Seasons Change' },
-  { id: 3, gm_id: 4, name: 'Farrenmore' },
-  { id: 4, gm_id: 3, name: 'Sille' }
+  { id: 2, gm_id: 2, name: 'Liam\'s Saga' },
+  { id: 3, gm_id: 3, name: 'As the Seasons Change' },
+  { id: 4, gm_id: 4, name: 'Lost Mine' }
 ]
 campaigns.each{|campaign| 
   camp = Campaign.create!(campaign)
@@ -44,9 +44,8 @@ campaigns.each{|campaign|
 }
 
 characters = [
-  { id: 1, player_id: 1, campaign_id: 3, name: 'Audrael' },
-  { id: 2, player_id: 2, campaign_id: 3, name: 'Mouse' },
-  { id: 3, player_id: 3, campaign_id: 3, name: 'Sticky' }
+  { id: 1, player_id: 2, campaign_id: 2, name: 'Audrael' },
+  { id: 2, player_id: 2, campaign_id: 2, name: 'Liam' },
 ]
 characters.each{|character| 
   char = Character.create!(character)
