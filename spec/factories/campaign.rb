@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :campaign do
     name { "Deurova" }
-    user
+    user { User.first }
   end
 end
