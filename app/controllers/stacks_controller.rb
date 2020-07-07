@@ -42,7 +42,7 @@ class StacksController < ApplicationController
   end
 
   def stack_params
-    params.require(:stack).permit(:inventory_id, :item_id, :quantity)
+    params.require(:stack).permit(:inventory_id, :item_id, :quantity, :position)
   end
 
 end
