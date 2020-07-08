@@ -38,7 +38,7 @@ class CampaignsController < ApplicationController
 
   def inventories
     inventories = @campaign.inventories.includes(:stacks) + @campaign.character_inventories.includes(:stacks)
-    render json: InventorySerializer.new(inventories)
+    render json: InventorySerializer.new(inventories, include: [:stacks]).serializable_hash
   end
 
   private
