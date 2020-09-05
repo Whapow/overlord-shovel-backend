@@ -12,7 +12,7 @@
 
 class StackSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :inventory_id, :item_id, :quantity
+  attributes :id, :inventory_id, :item_id, :quantity, :position
   belongs_to :inventory 
   belongs_to :item
 end

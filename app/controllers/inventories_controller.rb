@@ -12,6 +12,6 @@ class InventoriesController < ApplicationController
   end
 
   def serialize(target)
-    render json: InventorySerializer.new(target)
+    render json: InventorySerializer.new(target, include: [:stacks]).serializable_hash
   end
 end
