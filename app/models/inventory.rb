@@ -16,9 +16,6 @@ class Inventory < ApplicationRecord
   belongs_to :owner, polymorphic: true
   has_many :stacks
 
-  validates :owner_id, presence: true
-  validates :owner_type, presence: true
-
   private
   
   def set_default_name

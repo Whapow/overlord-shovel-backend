@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_190949) do
+ActiveRecord::Schema.define(version: 2020_07_07_190518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 2019_04_04_190949) do
     t.datetime "updated_at", null: false
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_characters_on_discarded_at"
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "entries", force: :cascade do |t|
@@ -85,12 +88,14 @@ ActiveRecord::Schema.define(version: 2019_04_04_190949) do
 
   create_table "stacks", force: :cascade do |t|
     t.integer "item_id"
-    t.string "inventory_id"
+    t.integer "inventory_id"
     t.integer "quantity"
     t.datetime "discarded_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
     t.index ["discarded_at"], name: "index_stacks_on_discarded_at"
+    t.index ["inventory_id"], name: "index_stacks_on_inventory_id"
   end
 
   create_table "users", force: :cascade do |t|
